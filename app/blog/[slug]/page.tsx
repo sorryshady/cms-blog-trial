@@ -11,11 +11,13 @@ async function getData(slug: string) {
   const data = await client.fetch(query);
   return data;
 }
-export default async function BlogArticle({
-  params,
-}: {
-  params: { slug: string };
-}) {
+
+interface Props {
+  params: {
+    slug: string;
+  };
+}
+export default async function BlogArticle({ params }: Props) {
   const data: fullBlog = await getData(params.slug);
   return (
     <div className="mt-8">
