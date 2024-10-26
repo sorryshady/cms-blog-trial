@@ -12,13 +12,11 @@ async function getData(slug: string) {
   return data;
 }
 
-interface Props {
-  params: {
-    slug: string;
-  };
-}
-export default async function BlogArticle({ params }: Props) {
-  const data: fullBlog = await getData(params.slug);
+type Params = Promise<{ slug: string }>;
+
+export default async function BlogArticle({ params }: { params: Params }) {
+  const { slug } = await params;
+  const data: fullBlog = await getData(slug);
   return (
     <div className="mt-8">
       <h1>
