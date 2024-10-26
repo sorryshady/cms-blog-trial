@@ -2,6 +2,8 @@ import { fullBlog } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
+
+export const revalidate = 30;
 async function getData(slug: string) {
   const query = `*[_type == 'blog' && slug.current =='${slug}'] {
   "currentSlug": slug.current,
